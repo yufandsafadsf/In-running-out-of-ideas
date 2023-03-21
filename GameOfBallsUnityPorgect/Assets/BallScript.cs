@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class BallScript : MonoBehaviour
 {
     Rigidbody2D Player;
 
     //player
-    float walkspeed = 4f;
+    float walkspeed = 10f;
     float speedlimiter = 0.7f;
     float inputHorizontal;
     float inputVerical;
