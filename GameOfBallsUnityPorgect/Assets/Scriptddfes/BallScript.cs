@@ -5,6 +5,12 @@ public class BallScript : MonoBehaviour
 {
     Rigidbody2D Player;
 
+    //Damage System
+    public int maxHealth = 100;
+    public int currentHealth;
+
+    public HealthScript healthScript;
+
     //player
     float walkspeed = 10f;
     float speedlimiter = 0.7f;
@@ -19,9 +25,12 @@ public class BallScript : MonoBehaviour
     const string BALL_RIGHT = "Ball Right";
     const string BALL_UP = "Ball Up";
     const string BALL_DOWN = "Ball Down";
-    // Start is called before the first frame update
+
+
     void Start()
     {
+        currentHealth = maxHealth;
+        healthScript.SetMaxHealth(maxHealth);
         Player = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
     }
@@ -48,6 +57,21 @@ public class BallScript : MonoBehaviour
         {
             ChangeAnimationsState(BALL_DOWN);
         }
+
+        //Damage detector
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            TakeDamage(5);
+        }
+    }
+
+    //Damage subtractor
+
+    void TakeDamage(int Damage)
+    {
+        currentHealth -= Damage;
+        healthScript.setHealth(currentHealth);
     }
 
     void FixedUpdate()
