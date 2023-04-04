@@ -9,7 +9,12 @@ public class BallScript : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
 
+    //Water System
+    public int maxWater = 100;
+    public int currentWater;
+
     public HealthScript healthScript;
+    public WaterScript waterScript;
 
     //player
     float walkspeed = 10f;
@@ -31,6 +36,10 @@ public class BallScript : MonoBehaviour
     {
         currentHealth = maxHealth;
         healthScript.SetMaxHealth(maxHealth);
+
+        currentWater = maxWater;
+        waterScript.SetMaxWater(maxWater);
+
         Player = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
     }
@@ -64,7 +73,15 @@ public class BallScript : MonoBehaviour
         {
             TakeDamage(5);
         }
+
+        //Water decector
+
+        if (Input.GetKeyDown(KeyCode.Backspace))
+        {
+            TakeWater(5);
+        }
     }
+
 
     //Damage subtractor
 
@@ -73,6 +90,15 @@ public class BallScript : MonoBehaviour
         currentHealth -= Damage;
         healthScript.setHealth(currentHealth);
     }
+
+    //Water subtractor
+
+    void TakeWater(int Water)
+    {
+        currentWater -= Water;
+        waterScript.setWater(currentWater);
+    }
+
 
     void FixedUpdate()
     {
