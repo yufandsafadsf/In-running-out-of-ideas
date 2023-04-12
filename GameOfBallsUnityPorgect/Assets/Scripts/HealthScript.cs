@@ -14,7 +14,7 @@ public class HealthScript : MonoBehaviour
     public Image fill;
 
 
-    public void SetMaxHealth(int health)
+    public void SetMaxHealth (int health)
     {
         slide.maxValue = health;
         slide.value = health;

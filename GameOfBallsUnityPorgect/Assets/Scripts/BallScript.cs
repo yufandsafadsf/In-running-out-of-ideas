@@ -5,16 +5,19 @@ public class BallScript : MonoBehaviour
 {
     Rigidbody2D Player;
 
-    //Damage System
+    //Bar systems
     public int maxHealth = 100;
     public int currentHealth;
 
-    //Water System
     public int maxWater = 100;
     public int currentWater;
 
+    public int maxHunger = 100;
+    public int currentHunger;
+
     public HealthScript healthScript;
     public WaterScript waterScript;
+    public HungerScript hungerScript;
 
     //player
     float walkspeed = 10f;
@@ -39,6 +42,9 @@ public class BallScript : MonoBehaviour
 
         currentWater = maxWater;
         waterScript.SetMaxWater(maxWater);
+
+        currentHunger = maxHunger;
+        hungerScript.SetMaxHunger(maxHunger);
 
         Player = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
@@ -67,18 +73,22 @@ public class BallScript : MonoBehaviour
             ChangeAnimationsState(BALL_DOWN);
         }
 
-        //Damage detector
+        //detectors
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             TakeDamage(5);
         }
 
-        //Water decector
-
+      
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
             TakeWater(5);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Backslash))
+        {
+            MoreHunger(5);
         }
     }
 
@@ -99,6 +109,11 @@ public class BallScript : MonoBehaviour
         waterScript.setWater(currentWater);
     }
 
+    void MoreHunger(int Hunger)
+    {
+        currentHunger -= Hunger;
+        hungerScript.setHunger(currentHunger);
+    }
 
     void FixedUpdate()
     {

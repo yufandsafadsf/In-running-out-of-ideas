@@ -13,12 +13,10 @@ public class WaterScript : MonoBehaviour
     public Image fill;
 
 
-    public void SetMaxWater(int Water)
+    public void SetMaxWater(int water)
     {
-        slideWater.maxValue = Water;
-        slideWater.value = Water;
-
-   
+        slideWater.maxValue = water;
+        slideWater.value = water;
     }
 
     public void setWater(int water)
